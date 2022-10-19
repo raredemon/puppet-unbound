@@ -8,7 +8,6 @@ remote-control:
   control-interface: <%= int %>
 <% end -%>
   control-port: <%= @port %>
-
 <% if @control_use_cert -%>
 <%   if @server_key_file -%>
   server-key-file: <%= @server_key_file %>
