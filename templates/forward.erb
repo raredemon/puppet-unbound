@@ -1,5 +1,8 @@
 forward-zone:
   name: "<%= @zone %>"
+<% if @no_cache == 'true' or @no_cache == true -%>
+  forward-no-cache: yes
+<% end -%>
 <% Array(@address).each do |addr| -%>
   forward-addr: <%= addr %>
 <% end -%>

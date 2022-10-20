@@ -30,13 +30,15 @@
 #   (optional) name of configuration file
 #
 define unbound::forward (
-  Array $address                          = [],
-  Array $host                             = [],
-  $zone                                   = $name,
-  Pattern[/yes|no/] $forward_first        = 'no',
-  Pattern[/yes|no/] $forward_ssl_upstream = 'no',
-  Pattern[/yes|no/] $forward_tls_upstream = 'no',
-  $config_file                            = $unbound::config_file,
+  Array $address                                    = [],
+  Array $host                                       = [],
+  $zone                                             = $name,
+  Pattern[/yes|no/] $forward_first                  = 'no',
+  Pattern[/yes|no/] $forward_ssl_upstream           = 'no',
+  Pattern[/yes|no/] $forward_tls_upstream           = 'no',
+  $config_file                                      = $unbound::config_file,
+  # lint:ignore:quoted_booleans
+  Variant[Boolean, Enum['true', 'false']] $no_cache = false,
 ) {
   concat::fragment { "unbound-forward-${name}":
     order   => '20',

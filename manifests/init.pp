@@ -135,7 +135,7 @@ class unbound (
   Optional[Integer]                             $key_cache_slabs                 = undef,
   Optional[Unbound::Size]                       $neg_cache_size                  = undef,
   Boolean                                       $unblock_lan_zones               = false,
-  Boolean                                       $insecure_lan_zones              = false,  # version 1.5.8 
+  Boolean                                       $insecure_lan_zones              = false,  # version 1.5.8
   Unbound::Local_zone                           $local_zone                      = {},
   Array[String[1]]                              $local_data                      = [],
   Array[String[1]]                              $local_data_ptr                  = [],
@@ -262,11 +262,12 @@ class unbound (
   }
 
   if $control_enable {
-    file { "${confdir}/interfaces.txt":
-      ensure  => file,
-      notify  => Exec['restart unbound'],
-      content => template('unbound/interfaces.txt.erb'),
-    }
+    # I don't know for which purposes it can be used
+    # file { "${confdir}/interfaces.txt":
+    #   ensure  => file,
+    #   notify  => Exec['restart unbound'],
+    #   content => template('unbound/interfaces.txt.erb'),
+    # }
     exec { 'restart unbound':
       command     => $restart_cmd,
       refreshonly => true,
